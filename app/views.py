@@ -82,6 +82,7 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+
 @app.route('/user/<nickname>')
 @login_required
 def user(nickname):
@@ -113,3 +114,14 @@ def edit():
         form.nickname.data = g.user.nickname
         form.about_me.data = g.user.about_me
     return render_template('edit.html', form=form)
+
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    db.session.rollback()
+    return render_template('500.html'), 500
