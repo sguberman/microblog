@@ -18,7 +18,8 @@ oid = OpenID(app, os.path.join(basedir, 'tmp'))
 if not app.debug:
     import logging
     from logging.handlers import RotatingFileHandler
-    file_handler = RotatingFileHandler('tmp/microblog.log',
+    logpath = os.path.join(basedir, 'tmp', 'microblog.log')
+    file_handler = RotatingFileHandler(logpath,
                                        'a',
                                        1 * 1024 * 1024,
                                        10)
