@@ -60,3 +60,4 @@ target/
 .rope*
 *.db
 db_repository/
+tmp/
